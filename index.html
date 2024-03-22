@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+
+    <title>Сокобан</title>
+
+</head>
+
+<body onload="start()">
+
+
+    
+    <!-- <div class="main">
+        
+        <h1>СОКОБАН</h1>
+        <button id = "btnPlay">ИГРАТЬ</button>
+        <button id = "btnRules">ПРАВИЛА</button>
+        <div id="man" onload="start()"></div>
+    </div>  -->
+    <div class="game">
+        <header class="header">
+            <table class="table"> 
+                <tr>
+                    <th>Уровень <span id="spanLevel">0</span></th>
+                    <th>Ящики <span id="spanBox">0/0</span></th>
+                    <th>Шаги <span id="spanSteps">0</span></th>
+                    
+                </tr>
+            </table>
+        </header>
+        <canvas id="canvas"></canvas>
+    </div>  
+
+    <!-- <div class="rules">
+        <h3>Правила игры</h3>
+        <p>
+            Игровое поле - это склад с лабиринтами коридоров. Грузчик <img src="/pic/man.jpg"> должен расставить ящики
+            <img src="/pic/box.jpg"> на указанные места <img src="/pic/target.jpg"> Цель - выполнить работу за наименьшее количество шагов.</p> <br>
+        <p>
+            Грузчик <img src="/pic/man.jpg"> может только толкать ящики <img src="/pic/box.jpg"> по одному. Грузчик <img src="/pic/man.jpg"> не может тянуть ящики <img src="/pic/box.jpg">  и не может сдвинуть сразу два
+            ящика <img src="/pic/box.jpg">. 
+        </p> <br>
+        <p>
+            Управление движениями грузчика осущеставляется стрелками или клавишами "W", "A", "S", "D". Отмена последнего шага - клавиша "Escape"    </p>
+
+
+    </div> -->
+    <script src="scriptGame.js"></script>
+    <script src="scriptMain.js"></script>
+    <script src="scriptMainAnimation.js"></script>
+</body>
+
+</html>
