@@ -20,7 +20,8 @@ body {
 .header {
     width: 100%;
     height: 8hv;
-    background-color: #5784ac;
+    /* background-color: #5784ac; */
+    background-color: aquamarine;
     font-size: 3vmin;
     display: flex;
 }
