@@ -27,10 +27,12 @@ var currentLevel = 0;
 const currentXY = { row: 0, col: 0 };
 
 function resizeCanvas() {
-    const { width, height } = ctx.canvas.getBoundingClientRect();
+
+    const { width, height, y } = ctx.canvas.getBoundingClientRect();
     ctx.canvas.width = width;
     ctx.canvas.height = height;
-    if (width >= height ) {
+    ctx.canvas.y = y;
+    if (width >= height) {
         sizeLab.size = ctx.canvas.height / map.length;
     }
     if (width < height) {
@@ -44,6 +46,11 @@ function resizeCanvas() {
 }
 
 window.addEventListener('keydown', buttonDown);
+document.addEventListener('click', mouseClick);
+document.addEventListener('touchend', mouseClick);
+
+
+
 
 function buttonDown(e) {
 
@@ -70,6 +77,28 @@ function buttonDown(e) {
 
     }
 };
+
+function mouseClick(e) {
+    const xClick = e.clientX;
+    const yClick = e.clientY - ctx.canvas.y;
+    const manX = sizeLab.dX + currentXY.col * sizeLab.size;
+    const manY = sizeLab.dY + currentXY.row * sizeLab.size;
+   
+
+    if (xClick > manX && xClick < manX + sizeLab.size && yClick < manY && yClick > manY-sizeLab.size) {
+        check(currentXY.row - 1, currentXY.col, currentXY.row - 2, currentXY.col);
+    }
+    if (xClick > manX && xClick < manX + sizeLab.size && yClick < manY+2*sizeLab.size && yClick > manY+sizeLab.size) {
+        check(currentXY.row + 1, currentXY.col, currentXY.row + 2, currentXY.col);
+    }
+    if (xClick > manX-sizeLab.size && xClick < manX && yClick < manY+sizeLab.size && yClick > manY) {
+        check(currentXY.row, currentXY.col - 1, currentXY.row, currentXY.col - 2);
+    }
+    if (xClick > manX+sizeLab.size && xClick < manX + 2*sizeLab.size &&  yClick < manY+sizeLab.size && yClick > manY) {
+        check(currentXY.row, currentXY.col + 1, currentXY.row, currentXY.col + 2);
+    }
+
+}
 
 
 
@@ -178,8 +207,8 @@ function startGame() {
     steps = 0;
     document.getElementById("spanSteps").innerHTML = steps;
     let lab = sessionStorage.getItem('currentLevel');
-    
-    document.getElementById("spanLevel").innerHTML = lab*1 + 1;
+
+    document.getElementById("spanLevel").innerHTML = lab * 1 + 1;
     map = JSON.parse(JSON.stringify(totalMap[lab]));
     resizeCanvas();
 
