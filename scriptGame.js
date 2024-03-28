@@ -1,5 +1,5 @@
 "use strict";
-const canvas = document.getElementById("canvas");
+var canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
 const sizeLab = {
@@ -7,65 +7,10 @@ const sizeLab = {
     dX: 0,
     dY: 0
 }
-const totalMap = [
-    [
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 8, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 0, 2, 0, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 2, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1],
-        [1, 4, 1, 0, 2, 0, 2, 0, 2, 0, 4, 1],
-        [1, 1, 1, 0, 0, 0, 0, 2, 0, 0, 4, 1],
-        [1, 1, 1, 0, 0, 0, 2, 0, 0, 0, 1, 1],
-        [1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1],
-        [1, 1, 1, 4, 4, 1, 1, 1, 4, 4, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-    ],
 
-    [
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 4, 4, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
-        [1, 4, 4, 0, 0, 1, 0, 2, 0, 0, 2, 0, 0, 1],
-        [1, 4, 4, 0, 0, 1, 2, 1, 1, 1, 1, 0, 0, 1],
-        [1, 4, 4, 0, 0, 0, 0, 8, 0, 1, 1, 0, 0, 1],
-        [1, 4, 4, 0, 0, 1, 0, 1, 0, 0, 2, 0, 1, 1],
-        [1, 1, 1, 1, 1, 1, 0, 1, 1, 2, 0, 2, 0, 1],
-        [1, 1, 1, 0, 2, 0, 0, 2, 0, 2, 0, 2, 0, 1],
-        [1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-    ],
-    [
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1],
-        [1, 1, 0, 2, 0, 2, 2, 0, 2, 1, 1, 1, 1, 1],
-        [1, 1, 1, 0, 1, 0, 0, 2, 0, 1, 1, 1, 1, 1],
-        [1, 4, 1, 0, 0, 0, 2, 2, 0, 1, 1, 1, 1, 1],
-        [1, 4, 1, 1, 1, 0, 0, 0, 2, 0, 1, 1, 1, 1],
-        [1, 4, 1, 4, 0, 2, 0, 1, 1, 0, 1, 1, 1, 1],
-        [1, 4, 4, 4, 0, 0, 2, 1, 1, 0, 2, 0, 0, 1],
-        [1, 4, 4, 4, 2, 0, 0, 0, 2, 0, 0, 0, 0, 1],
-        [1, 4, 4, 1, 1, 1, 2, 1, 1, 1, 0, 1, 8, 1],
-        [1, 4, 4, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-    ],
-    [
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1],
-        [1, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0, 0, 1, 1, 0, 2, 0, 0, 0, 1],
-        [1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 4, 1, 1, 1, 1, 1, 1, 0, 1, 1],
-        [1, 1, 0, 1, 1, 0, 0, 1, 1, 4, 4, 4, 4, 1, 1, 1, 1, 0, 1, 1],
-        [1, 1, 0, 1, 1, 2, 0, 1, 1, 1, 4, 4, 1, 1, 0, 0, 0, 0, 0, 1],
-        [1, 0, 0, 0, 0, 0, 0, 1, 4, 4, 4, 0, 4, 1, 0, 2, 0, 2, 0, 1],
-        [1, 0, 2, 0, 1, 1, 0, 1, 1, 0, 4, 0, 1, 1, 1, 0, 1, 1, 1, 1],
-        [1, 0, 1, 0, 2, 0, 0, 0, 0, 1, 4, 1, 1, 0, 1, 0, 1, 1, 1, 1],
-        [1, 0, 2, 0, 2, 0, 1, 0, 0, 0, 4, 1, 1, 1, 1, 0, 1, 1, 1, 1],
-        [1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1, 0, 0, 2, 1, 1, 2, 0, 0, 0, 2, 0, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 2, 0, 1, 8, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-    ]
+window.addEventListener("resize", resizeCanvas);
 
-]
+
 
 var imgWall = new Image();
 imgWall.src = "/pic/wall.jpg";
@@ -85,16 +30,16 @@ function resizeCanvas() {
     const { width, height } = ctx.canvas.getBoundingClientRect();
     ctx.canvas.width = width;
     ctx.canvas.height = height;
-    if (width >= height) {
+    if (width >= height ) {
         sizeLab.size = ctx.canvas.height / map.length;
-        sizeLab.dX = (ctx.canvas.width - sizeLab.size * map[0].length) / 2;
-        drawMap();
     }
     if (width < height) {
         sizeLab.size = ctx.canvas.width / map[0].length;
-        sizeLab.dY = (ctx.canvas.height - sizeLab.size * map.length) / 2;
-        drawMap();
     }
+
+    sizeLab.dX = (ctx.canvas.width - sizeLab.size * map[0].length) / 2;
+    sizeLab.dY = (ctx.canvas.height - sizeLab.size * map.length) / 2;
+    drawMap();
 
 }
 
@@ -125,6 +70,8 @@ function buttonDown(e) {
 
     }
 };
+
+
 
 function check(x1, y1, x2, y2) {
     if (map[x1][y1] === 1)
@@ -193,16 +140,9 @@ function drawMap() {
     document.getElementById("spanBox").innerHTML = boxFixed + "/" + box;
 
     if (boxFixed === box) {
-        console.log("win");
+        win();
     }
 }
-
-
-function win() {
-
-}
-
-onloadImages(startGame);
 
 function onloadImages(callback) {
     let imagesArr = [
@@ -211,7 +151,6 @@ function onloadImages(callback) {
         "/pic/target.jpg",
         "/pic/man.jpg"
     ];
-
     let imagesLoaded = 0;
 
     imagesArr.forEach(function (image) {
@@ -219,14 +158,11 @@ function onloadImages(callback) {
         img.onload = function () {
             imagesLoaded++;
             call();
-
         };
 
         img.onerror = function () {
-            spritesLoaded++;
-            console.log(sprite, "не загрузился!");
-            call();
-
+            imagesLoaded++;
+            alert('при загрузке игры произошла ошибка, пожалуйста, обновите страницу!')
         }
         img.src = image;
     });
@@ -236,17 +172,22 @@ function onloadImages(callback) {
             callback();
         }
     }
-
 }
 
-
 function startGame() {
-    let lab = window.currentLevel;
-    document.getElementById("spanLevel").innerHTML = lab + 1;
+    steps = 0;
+    document.getElementById("spanSteps").innerHTML = steps;
+    let lab = sessionStorage.getItem('currentLevel');
+    
+    document.getElementById("spanLevel").innerHTML = lab*1 + 1;
     map = JSON.parse(JSON.stringify(totalMap[lab]));
     resizeCanvas();
 
+}
 
-
+function refreshGame() {
+    map = JSON.parse(history[0]);
+    history.length = 0;
+    startGame();
 }
 

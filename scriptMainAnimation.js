@@ -1,6 +1,6 @@
 let manH = {
     posX: 100,
-    posY: 65,
+    posY: 70,
     speedX: 0.2,
     step: true,
     tick_count: 0,

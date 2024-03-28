@@ -1,15 +1,16 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 400;
 }
 
 body {
-    overflow:hidden;
+    overflow: hidden;
 }
 
 
-.game {
+#game {
     width: 100vw;
     height: 100vh;
     border: 2px solid black;
@@ -17,13 +18,12 @@ body {
 }
 
 .header {
+    width: 100%;
     height: 8hv;
     background-color: #5784ac;
-    font-size: 20px;
+    font-size: 3vmin;
     display: flex;
 }
-
-
 
 canvas {
     position: absolute;
@@ -35,11 +35,6 @@ canvas {
     box-sizing: border-box;
 }
 
-#canvasMain {
-    width: 100vw;
-    height: 99vh;
-    box-sizing: border-box;
-}
 
 .table {
     width: 100%;
@@ -47,71 +42,145 @@ canvas {
 
 
 h1 {
-    font-size: 8vh;
+    font-size: 10vmin;
     width: 80vw;
     text-align: center;
-    position: absolute;
-    top: 25vh;
+    margin: 10vh;
     color: #5784ac;
- 
+
 }
 
-h3{
+h3 {
     text-align: center;
     color: #5784ac;
-    margin-bottom: 5%;
+    font-size: 4vmin;
 }
 
 
-.main {
+#main {
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+#win {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 
-.main button {
+#main button {
     display: block;
     font-size: 4vh;
     width: 50vw;
     height: 6vh;
+    margin-top: 2vh;
     border-style: none;
     border-radius: 3px;
-    background-color:#5784ac;
-    position: absolute;
+    background-color: #5784ac;
     color: white;
 
 }
 
 #btnPlay {
-    top: 40vh;
+    top: 35vh;
 }
 
 #btnRules {
-    top: 48vh; 
+    top: 43vh;
 }
 
-#man{
-    background-image: url(/pic/manspriteleft.jpg) ;
+#man {
+    background-image: url(/pic/manspriteleft.jpg);
     background-size: no-repeat;
     background-position: left;
     background-size: cover;
     position: absolute;
     top: 65vh;
-    width: 40vh;
-    height: 20vh;
+    width: 20vh;
+    height: 10vh;
 }
 
-.rules{
+#rules {
     width: 80vw;
-    margin: 0 auto;
+    margin: auto;
     background-color: white;
-    border: 2px solid #5784ac;
-    border-radius: 10px;
+    border: 5px solid #5784ac;
     padding: 3%;
     margin-top: 20vh;
     line-height: 4vh;
+    font-size: 3vmin;
 }
 
-.rules img {
-    width: 3vh;
+#rules img {
+    width: 3vmin;
+}
+
+#usernameInput {
+    margin: 1vh 0;
+    width: 40vw;
+    height: 6vmin;
+    font-size: 5vmin;
+    background-color: white;
+    color: #5784ac;
+    border-radius: 3px;
+    border: #5784ac solid 3px;
+}
+
+
+#btnNextLevel {
+    display: block;
+    font-size: 4vmin;
+    width: 50vmin;
+    height: 6vh;
+    border-style: none;
+    border-radius: 3px;
+    background-color: #5784ac;
+    color: white;
+    margin-top: 10vh;
+}
+
+#btnToMainPage,
+#btnRefreshGame {
+    height: 100%;
+    width: 100%;
+    font-size: 3vmin;
+    background-color: #5784ac;
+    color: white;
+    border: none;
+
+}
+
+#levelList {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+
+}
+
+#levelList button {
+    width: 8vmax;
+    height: 8vmax;
+    margin: 3vh;
+    font-size: 6vmax;
+    border: #5784ac 3px solid;
+    background-color: white;
+    color: black;
+}
+
+
+#levelList button:hover {
+    width: 8vmax;
+    height: 8vmax;
+    margin: 3vh;
+    font-size: 6vmax;
+    border: #5784ac 3px solid;
+    background-color: #5784ac;
+    color: white;
+    transform: scale(1.2);
+    transition-duration: 0.5s;
 }
