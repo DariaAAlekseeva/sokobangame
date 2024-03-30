@@ -20,7 +20,6 @@ body {
 .header {
     width: 100%;
     height: 8hv;
-    /* background-color: #5784ac; */
     background-color: #5784ac;
     font-size: 3vmin;
     display: flex;
@@ -149,9 +148,14 @@ h3 {
     width: 100%;
     font-size: 3vmin;
     background-color: #5784ac;
-    color: white;
+    color:white;
     border: none;
 
+}
+
+#btnRefreshGame:disabled{
+    color: #8da2b4;
+    
 }
 
 #levelList {

@@ -2,15 +2,16 @@
 var canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
+window.addEventListener("resize", resizeCanvas);
+window.addEventListener('keydown', buttonDown);
+canvas.addEventListener('click', touchOrClick);
+canvas.addEventListener('touchstart', touchOrClick);
+
 const sizeLab = {
     size: 0,
     dX: 0,
     dY: 0
 }
-
-window.addEventListener("resize", resizeCanvas);
-
-
 
 var imgWall = new Image();
 imgWall.src = "/pic/wall.jpg";
@@ -45,13 +46,6 @@ function resizeCanvas() {
 
 }
 
-window.addEventListener('keydown', buttonDown);
-document.addEventListener('click', mouseClick);
-document.addEventListener('touchend', mouseClick);
-
-
-
-
 function buttonDown(e) {
 
     if (e.code === "KeyW" || e.code === "ArrowUp") {
@@ -78,7 +72,7 @@ function buttonDown(e) {
     }
 };
 
-function mouseClick(e) {
+function touchOrClick(e) {
     const xClick = e.clientX;
     const yClick = e.clientY - ctx.canvas.y;
     const manX = sizeLab.dX + currentXY.col * sizeLab.size;
@@ -99,7 +93,6 @@ function mouseClick(e) {
     }
 
 }
-
 
 
 function check(x1, y1, x2, y2) {
@@ -211,7 +204,6 @@ function startGame() {
     document.getElementById("spanLevel").innerHTML = lab * 1 + 1;
     map = JSON.parse(JSON.stringify(totalMap[lab]));
     resizeCanvas();
-
 }
 
 function refreshGame() {
