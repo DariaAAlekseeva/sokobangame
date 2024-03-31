@@ -14,7 +14,7 @@ function UpdateToState(NewStateH) {
             document.getElementById("win").style.display = "none";
             break;
 
-        case "LevelSelect":  //главная
+        case "LevelSelect": //выбор уровня
             document.getElementById("rules").style.display = "none";
             document.getElementById("levelSelect").style.display = "block";
             document.getElementById("game").style.display = "none";
@@ -63,7 +63,6 @@ function SwitchToStateFromURLHash() {
         UpdateToState({ pagename: 'Main' });
 }
 
-
 function SwitchToState(NewStateH) {
     var StateStr = NewStateH.pagename;
     location.hash = StateStr;
@@ -93,13 +92,17 @@ function SwitchToWinPage() {
 SwitchToStateFromURLHash();
 
 
+
+
 function win() {
     setTimeout(() => SwitchToWinPage(), 1000);
     document.getElementById('newRecordMsg').style.visibility = "hidden";
     let currentLevelResult = localStorage.getItem(String(currentLevel));
+    
     if (currentLevelResult > 0 && currentLevelResult > steps || !currentLevelResult) {
         localStorage.setItem(String(currentLevel), steps);
     }
+
     let resultSpan = document.getElementById("resultSpan");
     resultSpan.innerHTML = steps + " " + getNumWord(steps, 'ШАГ', 'ШАГА', 'ШАГОВ');
     let levelSpan = document.getElementById("levelSpan");
@@ -110,6 +113,7 @@ function win() {
 
 function nextLevel() {
     currentLevel++;
+    sessionStorage.setItem('currentLevel', currentLevel);
     SwitchToGame();
     history.length = 0;
 }
