@@ -16,7 +16,6 @@ for (let i = 0; i < totalMap.length; i++) {
 
     levelList.appendChild(newBtn);
     levelNum.textContent = i + 1;
-
     changeLevelRes();
 }
 
@@ -28,7 +27,7 @@ levelList.addEventListener('click', function (event) {
     let currentLevelBtn = event.target;
     currentLevel = currentLevelBtn.firstElementChild.textContent - 1;
     sessionStorage.setItem('currentLevel', currentLevel);
-    SwitchToGame();
+    switchToGame();
 });
 
 

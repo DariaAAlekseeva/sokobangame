@@ -12,15 +12,15 @@
 <body onload="startAnimation()">
     <div id="main">
         <h1>СОКОБАН</h1>
-        <button class="btnToPlay" onclick="SwitchToLevelSelect()">ИГРАТЬ</button>
-        <button id="btnRules" onclick="SwitchToRulesPage()">ПРАВИЛА</button>
+        <button class="btnToPlay" onclick="switchToLevelSelect()">ИГРАТЬ</button>
+        <button id="btnRules" onclick="switchToRulesPage()">ПРАВИЛА</button>
         <div id="man" onload="start()"></div>
     </div>
 
     <div id="levelSelect">
         <h1>ВЫБЕРИТЕ УРОВЕНЬ</h1>
         <div id="levelList"></div>
-        <button class="btnToMainPage" onclick="SwitchToMainPage()">НА ГЛАВНУЮ</button>
+        <button class="btnToMainPage" onclick="switchToMainPage()">НА ГЛАВНУЮ</button>
     </div>
 
     <div id="game">
@@ -30,7 +30,7 @@
                     <th>УРОВЕНЬ <span id="spanLevel">0</span></th>
                     <th>ЯЩИКИ <span id="spanBox">0/0</span></th>
                     <th>ШАГИ <span id="spanSteps">0</span></th>
-                    <th><button class="btnToMainPage" onclick="SwitchToMainPage()">НА ГЛАВНУЮ</button></th>
+                    <th><button class="btnToMainPage" onclick="switchToMainPage()">НА ГЛАВНУЮ</button></th>
                     <th><button disabled id="btnRefreshGame" onclick="refreshGame() ">НАЧАТЬ ЗАНОВО</button></th>
 
                 </tr>
@@ -62,18 +62,18 @@
             грузчиком полю. Отмена последнего
             шага - клавиша "Escape" / двойной щелчок мышью или двойное касание.
         </p>
-        <button class="btnToMainPage" onclick="SwitchToMainPage()">НА ГЛАВНУЮ</button>
+        <button class="btnToMainPage" onclick="switchToMainPage()">НА ГЛАВНУЮ</button>
     </div>
 
     <div id="win">
         <h1>УРОВЕНЬ ПРОЙДЕН!</h1>
-        <h3>ВЫ ПРОШЛИ УРОВЕНЬ <span id="levelSpan">0</span> ЗА <span id="resultSpan">0</span></h3> <br>
-        <h3>ТЕКУЩИЙ РЕКОРД УРОВНЯ - <span id="levelRecordSpan">0</span> </h3> <br>
+        <h3><span id="levelSpan"></span> <span id="resultSpan"></span></h3> <br>
+        <h3><span id="levelRecordSpan"></span> </h3> <br>
         <h3 style="color: #d45120; visibility:hidden" id="newRecordMsg">ВЫ УСТАНОВИЛИ НОВЫЙ РЕКОРД!</h3> <br>
 
         <button id="btnNextLevel" type="button" onclick="nextLevel()">СЛЕДУЮЩИЙ УРОВЕНЬ</button>
-        <button class="btnToMainPage" onclick="SwitchToMainPage()">НА ГЛАВНУЮ</button>
-        <button class="btnToPlay" onclick="SwitchToLevelSelect()">К СПИСКУ УРОВНЕЙ</button>
+        <button class="btnToMainPage" onclick="switchToMainPage()">НА ГЛАВНУЮ</button>
+        <button class="btnToPlay" onclick="switchToLevelSelect()">К СПИСКУ УРОВНЕЙ</button>
 
     </div>
 

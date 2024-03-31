@@ -1,4 +1,4 @@
-let manH = {
+let manSprite = {
     posX: 100,
     posY: 70,
     speedX: 0.2,
@@ -18,33 +18,35 @@ function startAnimation() {
 }
 
 function tick() {
-    manH.posX -= manH.speedX;
-    if (manH.tick_count >= 15) {
-        if (manH.step) {
+    manSprite.posX -= manSprite.speedX;
+    if (manSprite.tick_count >= 15) {
+        if (manSprite.step) {
             document.getElementById('man').style.backgroundPosition = "right";
-            manH.step = false;
+            manSprite.step = false;
         } else {
             document.getElementById('man').style.backgroundPosition = "left";
-            manH.step = true;
+            manSprite.step = true;
         }
-        manH.tick_count = 0;
+        manSprite.tick_count = 0;
       }
-      manH.tick_count++;
+      manSprite.tick_count++;
       
-    if (manH.posX < -30) {
-        manH.speedX = - manH.speedX;
+    if (manSprite.posX < -30) {
+        manSprite.speedX = - manSprite.speedX;
+        manSprite.posY -= 10;
         document.getElementById('man').style.backgroundImage = "url('/pic/manspriteright.jpg')";
     }
 
-    if (manH.posX > 100) {
-        manH.speedX = - manH.speedX;
+    if (manSprite.posX > 100) {
+        manSprite.speedX = - manSprite.speedX;
+        manSprite.posY += 10;
         document.getElementById('man').style.backgroundImage = "url('/pic/manspriteleft.jpg')";
        
     }
 
-    manH.update();
+    manSprite.update();
     requestAnimationFrame(tick);
 }
 
-manH.update();
+manSprite.update();
 

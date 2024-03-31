@@ -87,8 +87,8 @@ h3 {
     background-size: cover;
     position: absolute;
     top: 120vh;
-    width: 20vh;
-    height: 10vh;
+    width: 30vh;
+    height: 15vh;
 }
 
 
@@ -166,7 +166,7 @@ h3 {
 
 .currentUserLevelRes, .levelNum{
    
-    line-height: 4vmax;
+    line-height: 7vmin;
     width: 15vmin;
     height: 7vmin;
     font-size: 2vmin;
@@ -179,7 +179,7 @@ h3 {
 }
 
 .levelNum{
-    margin-top: 3vmin;
+    margin-top: 1vmin;
     color: #d45120;
     font-size: 5vmin;
 }

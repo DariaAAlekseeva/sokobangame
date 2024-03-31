@@ -1,13 +1,13 @@
-window.onhashchange = SwitchToStateFromURLHash;
+
+window.onhashchange = switchToStateFromURLHash;
 
 var SPAStateH = {};
 
-function UpdateToState(NewStateH) {
-    SPAStateH = NewStateH;
+function updateToState(newStateH) {
+    SPAStateH = newStateH;
     switch (SPAStateH.pagename) {
 
         case "Main":  //главная
-    
             document.getElementById("rules").style.display = "none";
             document.getElementById("levelSelect").style.display = "none";
             document.getElementById("game").style.display = "none";
@@ -49,77 +49,77 @@ function UpdateToState(NewStateH) {
     }
 }
 
-function SwitchToStateFromURLHash() {
+
+function switchToStateFromURLHash() {
+
     var URLHash = window.location.hash;
-    var StateStr = URLHash.substring(1);
+    var stateStr = URLHash.substring(1);
 
-    if (StateStr != "") {
-        var PartsA = StateStr.split("_")
+    if (stateStr != "") {
+        var partsA = stateStr.split("_")
 
-        var NewStateH = { pagename: PartsA[0] };
+        var newStateH = { pagename: partsA[0] };
 
-        UpdateToState(NewStateH);
+        updateToState(newStateH);
     }
     else
-        UpdateToState({ pagename: 'Main' });
+        updateToState({ pagename: 'Main' });
 }
 
-function SwitchToState(NewStateH) {
-    var StateStr = NewStateH.pagename;
-    location.hash = StateStr;
+function switchToState(newStateH) {
+    var stateStr = newStateH.pagename;
+    location.hash = stateStr;
 }
 
-function SwitchToMainPage() {
-    SwitchToState({ pagename: 'Main' });
+function switchToMainPage() {
+    switchToState({ pagename: 'Main' });
 }
 
-function SwitchToLevelSelect() {
-    SwitchToState({ pagename: 'LevelSelect' });
+function switchToLevelSelect() {
+    switchToState({ pagename: 'LevelSelect' });
     changeLevelRes();
 }
 
-function SwitchToRulesPage() {
-    SwitchToState({ pagename: 'Rules' });
+function switchToRulesPage() {
+    switchToState({ pagename: 'Rules' });
 }
 
-function SwitchToGame() {
-    SwitchToState({ pagename: 'Game' });
+function switchToGame() {
+    switchToState({ pagename: 'Game' });
 }
 
-function SwitchToWinPage() {
-    SwitchToState({ pagename: 'Win' });
+function switchToWinPage() {
+    switchToState({ pagename: 'Win' });
 }
 
-SwitchToStateFromURLHash();
+switchToStateFromURLHash();
 
 
 
 
 function win() {
-    setTimeout(() => SwitchToWinPage(), 1000);
+    setTimeout(() => switchToWinPage(), 2000);
     document.getElementById('newRecordMsg').style.visibility = "hidden";
-    let currentLevelResult = localStorage.getItem(String(currentLevel));
+    let currentLevelResult = sessionStorage.getItem(String(currentLevel));
     
     if (currentLevelResult > 0 && currentLevelResult > steps || !currentLevelResult) {
-        localStorage.setItem(String(currentLevel), steps);
+        sessionStorage.setItem(String(currentLevel), steps);
     }
 
     let resultSpan = document.getElementById("resultSpan");
     resultSpan.innerHTML = steps + " " + getNumWord(steps, 'ШАГ', 'ШАГА', 'ШАГОВ');
     let levelSpan = document.getElementById("levelSpan");
-    levelSpan.innerHTML = currentLevel + 1;
-    sessionStorage.setItem('currentLevel', currentLevel);
+ 
+    levelSpan.innerHTML = `ВЫ ПРОШЛИ УРОВЕНЬ ${currentLevel+1} ЗА `;
     restoreInfo();
 }
 
 function nextLevel() {
     currentLevel++;
     sessionStorage.setItem('currentLevel', currentLevel);
-    SwitchToGame();
+    switchToGame();
     history.length = 0;
 }
-
-
 
 const ajaxHandlerScript = "https://fe.it-academy.by/AjaxStringStorage2.php";
 let updatePassword;
@@ -180,7 +180,7 @@ function readReady(callresult) {
         const currentRecord = JSON.parse(callresult.result);
         let currentLevel = sessionStorage.getItem('currentLevel');
         const levelRecordSpan = document.getElementById("levelRecordSpan");
-        levelRecordSpan.innerHTML = currentRecord.levelsRecord[currentLevel];
+        levelRecordSpan.innerHTML = "ТЕКУЩИЙ РЕКОРД УРОВНЯ - " + currentRecord.levelsRecord[currentLevel];
 
         if (currentRecord.levelsRecord[currentLevel] > steps || (!currentRecord.levelsRecord[currentLevel])) {
 
