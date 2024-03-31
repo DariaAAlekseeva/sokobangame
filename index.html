@@ -5,9 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-
     <title>Сокобан</title>
-
+    <script src="https://fe.it-academy.by/JQ/jquery.js"></script>
 </head>
 
 <body onload="startAnimation()">
@@ -54,11 +53,13 @@
         <p>
             Игровое поле - это склад с лабиринтами коридоров. Грузчик должен расставить ящики
             на указанные места Цель - выполнить работу за
-            наименьшее количество шагов. Грузчик может только толкать ящики по одному. Грузчик не может тянуть ящики и не может сдвинуть сразу два
+            наименьшее количество шагов. Грузчик может только толкать ящики по одному. Грузчик не может тянуть ящики и
+            не может сдвинуть сразу два
             ящика.
-        </p> 
+        </p>
         <p>
-            Управление движениями грузчика осущеставляется стрелками/клавишами "W", "A", "S", "D"/кликом по соседнему с грузчиком полю. Отмена последнего
+            Управление движениями грузчика осущеставляется стрелками/клавишами "W", "A", "S", "D"/кликом по соседнему с
+            грузчиком полю. Отмена последнего
             шага - клавиша "Escape".
         </p>
         <button class="btnToMainPage" onclick="SwitchToMainPage()">НА ГЛАВНУЮ</button>
@@ -67,20 +68,22 @@
     <div id="win">
         <h1>УРОВЕНЬ ПРОЙДЕН!</h1>
         <h3>ВЫ ПРОШЛИ УРОВЕНЬ <span id="levelSpan">0</span> ЗА <span id="resultSpan">0</span></h3> <br>
-        <h3>ТЕКУЩИЙ РЕКОРД УРОВНЯ <span id="levelRecordSpan">0</span> </h3> <br>
+        <h3>ТЕКУЩИЙ РЕКОРД УРОВНЯ - <span id="levelRecordSpan">0</span> </h3> <br>
+        <h3 style="color: #d45120; visibility:hidden" id="newRecordMsg">ВЫ УСТАНОВИЛИ НОВЫЙ РЕКОРД!</h3> <br>
 
         <button id="btnNextLevel" type="button" onclick="nextLevel()">СЛЕДУЮЩИЙ УРОВЕНЬ</button>
         <button class="btnToMainPage" onclick="SwitchToMainPage()">НА ГЛАВНУЮ</button>
         <button class="btnToPlay" onclick="SwitchToLevelSelect()">К СПИСКУ УРОВНЕЙ</button>
-        
+
     </div>
 
     <script src="https://fe.it-academy.by/JQ/jquery.js"></script>
     <script src="levels.js"></script>
-    <script src="levelSelect.js"></script>
+    <script src="scriptLevelSelect.js"></script>
     <script src="scriptGame.js"></script>
-    <script src="scriptMain.js"></script>
+    <script src="script.js"></script>
     <script src="scriptMainAnimation.js"></script>
+
 
 </body>
 

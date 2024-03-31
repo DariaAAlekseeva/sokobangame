@@ -98,7 +98,7 @@ h3 {
     background-color: white;
     border: 5px solid #5784ac;
     padding: 3%;
-    line-height: 5vmin;
+    line-height: 4vmin;
     margin: 10vmin auto;
     font-size: 3vmin;
     text-indent: 30px;
@@ -158,7 +158,7 @@ h3 {
     line-height: 5vmin;
     width: 15vmin;
     height: 15vmin;
-    margin: 3vh;
+    margin: 1vh;
     border: #5784ac 3px solid;
     background-color: white;
     color: #d45120;
@@ -185,7 +185,7 @@ h3 {
 }
 
 .currentUserLevelRes{
-    margin-top: -2vmin;
+    margin-top: -3vmin;
 }
 
 .btnLevel:hover{
@@ -208,5 +208,5 @@ h3 {
 }
 
 #main h1, #win h1{
-    margin-top: 30vh;
+    margin-top: 20vh;
 }

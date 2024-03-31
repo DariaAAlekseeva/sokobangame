@@ -26,7 +26,6 @@ var currentLevel = 0;
 
 levelList.addEventListener('click', function (event) {
     let currentLevelBtn = event.target;
-    console.log(currentLevelBtn);
     currentLevel = currentLevelBtn.firstElementChild.textContent - 1;
     sessionStorage.setItem('currentLevel', currentLevel);
     SwitchToGame();

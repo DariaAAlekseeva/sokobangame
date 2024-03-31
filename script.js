@@ -63,6 +63,7 @@ function SwitchToStateFromURLHash() {
         UpdateToState({ pagename: 'Main' });
 }
 
+
 function SwitchToState(NewStateH) {
     var StateStr = NewStateH.pagename;
     location.hash = StateStr;
@@ -74,7 +75,7 @@ function SwitchToMainPage() {
 
 function SwitchToLevelSelect() {
     SwitchToState({ pagename: 'LevelSelect' });
-    changeLevelRes();   
+    changeLevelRes();
 }
 
 function SwitchToRulesPage() {
@@ -94,23 +95,99 @@ SwitchToStateFromURLHash();
 
 function win() {
     setTimeout(() => SwitchToWinPage(), 1000);
-    console.log ("we are here");
-    let currentLevelResult = localStorage.getItem(currentLevel);
-    console.log (currentLevelResult);
-    if (currentLevelResult>0 && currentLevelResult>steps || !currentLevelResult){
+    document.getElementById('newRecordMsg').style.visibility = "hidden";
+    let currentLevelResult = localStorage.getItem(String(currentLevel));
+    if (currentLevelResult > 0 && currentLevelResult > steps || !currentLevelResult) {
         localStorage.setItem(String(currentLevel), steps);
-    }    
+    }
     let resultSpan = document.getElementById("resultSpan");
-
-    resultSpan.innerHTML = steps+" " + getNumWord(steps,'ШАГ','ШАГА','ШАГОВ');
+    resultSpan.innerHTML = steps + " " + getNumWord(steps, 'ШАГ', 'ШАГА', 'ШАГОВ');
     let levelSpan = document.getElementById("levelSpan");
     levelSpan.innerHTML = currentLevel + 1;
-    sessionStorage.setItem('currentLevel', currentLevel+1 );
+    sessionStorage.setItem('currentLevel', currentLevel);
+    restoreInfo();
 }
 
 function nextLevel() {
     currentLevel++;
     SwitchToGame();
     history.length = 0;
+}
+
+
+
+const ajaxHandlerScript = "https://fe.it-academy.by/AjaxStringStorage2.php";
+let updatePassword;
+const stringName = 'ALEKSEEVA_SOKOBAN';
+
+function storeInfo() {
+    updatePassword = Math.random();
+    $.ajax({
+        url: ajaxHandlerScript, type: 'POST', cache: false, dataType: 'json',
+        data: { f: 'LOCKGET', n: stringName, p: updatePassword },
+        success: lockGetReady, error: errorHandler
+    }
+    );
+}
+
+function lockGetReady(callresult) {
+    if (callresult.error != undefined)
+        alert(callresult.error);
+    else {
+        //const record = {levelsRecord: [null, null, null, null, null, null, null, null, null, null]}
+        const record = JSON.parse(callresult.result);
+        let currentLevel = sessionStorage.getItem('currentLevel');
+        record.levelsRecord[currentLevel] = steps;
+
+
+        $.ajax({
+            url: ajaxHandlerScript, type: 'POST', cache: false, dataType: 'json',
+            data: {
+                f: 'UPDATE', n: stringName,
+                v: JSON.stringify(record), p: updatePassword
+            },
+            success: updateReady, error: errorHandler
+        }
+        );
+    }
+}
+
+function updateReady(callresult) {
+    if (callresult.error != undefined)
+        alert(callresult.error);
+}
+
+function restoreInfo() {
+    $.ajax(
+        {
+            url: ajaxHandlerScript, type: 'POST', cache: false, dataType: 'json',
+            data: { f: 'READ', n: stringName },
+            success: readReady, error: errorHandler
+        }
+    );
+}
+
+
+function readReady(callresult) {
+    if (callresult.error != undefined)
+        alert(callresult.error);
+    else if (callresult.result != "") {
+        const currentRecord = JSON.parse(callresult.result);
+        let currentLevel = sessionStorage.getItem('currentLevel');
+        const levelRecordSpan = document.getElementById("levelRecordSpan");
+        levelRecordSpan.innerHTML = currentRecord.levelsRecord[currentLevel];
+
+        if (currentRecord.levelsRecord[currentLevel] > steps || (!currentRecord.levelsRecord[currentLevel])) {
+
+            document.getElementById('newRecordMsg').style.visibility = "visible";
+            storeInfo();
+            
+        }
+    }
+
+}
+
+function errorHandler(jqXHR, statusStr, errorStr) {
+    alert(statusStr + ' ' + errorStr);
 }
 

@@ -8,6 +8,9 @@ window.addEventListener("resize", resizeCanvas);
 window.addEventListener('keydown', buttonDown);
 canvas.addEventListener('click', touchOrClick);
 canvas.addEventListener('touchstart', touchOrClick);
+canvas.addEventListener('dblclick', dblButtonClick)
+
+
 
 const sizeLab = {
     size: 0,
@@ -96,6 +99,16 @@ function touchOrClick(e) {
     }
 
 }
+
+function dblButtonClick() {
+    if (history.length > 0) {
+        map = JSON.parse(history.pop());
+        steps++;
+    }
+    document.getElementById("spanSteps").innerHTML = steps;
+    drawMap();
+}
+
 
 
 function check(x1, y1, x2, y2) {
