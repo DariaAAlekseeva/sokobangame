@@ -7,6 +7,7 @@ function UpdateToState(NewStateH) {
     switch (SPAStateH.pagename) {
 
         case "Main":  //главная
+        localStorage.clear();
             document.getElementById("rules").style.display = "none";
             document.getElementById("levelSelect").style.display = "none";
             document.getElementById("game").style.display = "none";

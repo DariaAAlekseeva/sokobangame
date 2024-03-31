@@ -38,9 +38,10 @@ function tick() {
 
     if (manH.posX > 100) {
         manH.speedX = - manH.speedX;
-        document.getElementById('man').style.backgroundImage = "url('/pic/manspriteleft.jpg')"; 
+        document.getElementById('man').style.backgroundImage = "url('/pic/manspriteleft.jpg')";
+       
     }
-    
+
     manH.update();
     requestAnimationFrame(tick);
 }
