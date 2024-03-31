@@ -10,20 +10,19 @@
 
 </head>
 
-<body onload="start()">
+<body onload="startAnimation()">
     <div id="main">
         <h1>СОКОБАН</h1>
-
-        <button id="btnPlay">ИГРАТЬ</button>
-        <button id="btnRules">ПРАВИЛА</button>
+        <button class="btnToPlay" onclick="SwitchToLevelSelect()">ИГРАТЬ</button>
+        <button id="btnRules" onclick="SwitchToRulesPage()">ПРАВИЛА</button>
         <div id="man" onload="start()"></div>
     </div>
 
     <div id="levelSelect">
         <h1>ВЫБЕРИТЕ УРОВЕНЬ</h1>
         <div id="levelList"></div>
+        <button class="btnToMainPage" onclick="SwitchToMainPage()">НА ГЛАВНУЮ</button>
     </div>
-
 
     <div id="game">
         <header class="header">
@@ -32,8 +31,8 @@
                     <th>УРОВЕНЬ <span id="spanLevel">0</span></th>
                     <th>ЯЩИКИ <span id="spanBox">0/0</span></th>
                     <th>ШАГИ <span id="spanSteps">0</span></th>
-                    <th><button id="btnToMainPage" onclick="SwitchToMainPage()">НА ГЛАВНУЮ</button></th>
-                    <th><button  id="btnRefreshGame" onclick="refreshGame() ">НАЧАТЬ ЗАНОВО</button></th>
+                    <th><button class="btnToMainPage" onclick="SwitchToMainPage()">НА ГЛАВНУЮ</button></th>
+                    <th><button disabled id="btnRefreshGame" onclick="refreshGame() ">НАЧАТЬ ЗАНОВО</button></th>
 
                 </tr>
             </table>
@@ -46,37 +45,43 @@
     <div id="rules">
         <h3>ПРАВИЛА ИГРЫ</h3>
         <br>
+        <p>Грузчик - <img src="/pic/man.jpg"></p>
+        <p>Стена - <img src="/pic/wall.jpg"></p>
+        <p>Ящик - <img src="/pic/box.jpg"></p>
+        <p>Место для ящика - <img src="/pic/target.jpg"></p>
+        <p>Ящик на своем месте - <img src="/pic/boxDone.jpg"></p> <br>
+
         <p>
-            Игровое поле - это склад с лабиринтами коридоров. Грузчик <img src="/pic/man.jpg"> должен расставить ящики
-            <img src="/pic/box.jpg"> на указанные места <img src="/pic/target.jpg"> Цель - выполнить работу за
-            наименьшее количество шагов.
-        </p> <br>
+            Игровое поле - это склад с лабиринтами коридоров. Грузчик должен расставить ящики
+            на указанные места Цель - выполнить работу за
+            наименьшее количество шагов. Грузчик может только толкать ящики по одному. Грузчик не может тянуть ящики и не может сдвинуть сразу два
+            ящика.
+        </p> 
         <p>
-            Грузчик <img src="/pic/man.jpg"> может только толкать ящики <img src="/pic/box.jpg"> по одному. Грузчик <img
-                src="/pic/man.jpg"> не может тянуть ящики <img src="/pic/box.jpg"> и не может сдвинуть сразу два
-            ящика <img src="/pic/box.jpg">.
-        </p> <br>
-        <p>
-            Управление движениями грузчика осущеставляется стрелками или клавишами "W", "A", "S", "D". Отмена последнего
-            шага - клавиша "Escape"</p>
+            Управление движениями грузчика осущеставляется стрелками/клавишами "W", "A", "S", "D"/кликом по соседнему с грузчиком полю. Отмена последнего
+            шага - клавиша "Escape".
+        </p>
+        <button class="btnToMainPage" onclick="SwitchToMainPage()">НА ГЛАВНУЮ</button>
     </div>
 
     <div id="win">
         <h1>УРОВЕНЬ ПРОЙДЕН!</h1>
-        <h3>ВЫ ПРОШЛИ УРОВЕНЬ <span id="levelSpan">0</span> ЗА <span id="resultSpan">0</span> ШАГОВ</h3> <br>
+        <h3>ВЫ ПРОШЛИ УРОВЕНЬ <span id="levelSpan">0</span> ЗА <span id="resultSpan">0</span></h3> <br>
         <h3>ТЕКУЩИЙ РЕКОРД УРОВНЯ <span id="levelRecordSpan">0</span> </h3> <br>
 
         <button id="btnNextLevel" type="button" onclick="nextLevel()">СЛЕДУЮЩИЙ УРОВЕНЬ</button>
+        <button class="btnToMainPage" onclick="SwitchToMainPage()">НА ГЛАВНУЮ</button>
+        <button class="btnToPlay" onclick="SwitchToLevelSelect()">К СПИСКУ УРОВНЕЙ</button>
+        
     </div>
 
     <script src="https://fe.it-academy.by/JQ/jquery.js"></script>
     <script src="levels.js"></script>
     <script src="levelSelect.js"></script>
-   
     <script src="scriptGame.js"></script>
     <script src="scriptMain.js"></script>
     <script src="scriptMainAnimation.js"></script>
-    <script src="scriptWin.js"></script>
+
 </body>
 
 </html>

@@ -1,4 +1,3 @@
-
 window.onhashchange = SwitchToStateFromURLHash;
 
 var SPAStateH = {};
@@ -75,6 +74,7 @@ function SwitchToMainPage() {
 
 function SwitchToLevelSelect() {
     SwitchToState({ pagename: 'LevelSelect' });
+    changeLevelRes();   
 }
 
 function SwitchToRulesPage() {
@@ -92,18 +92,17 @@ function SwitchToWinPage() {
 SwitchToStateFromURLHash();
 
 
-btnRules.onclick = function () {
-    SwitchToRulesPage();
-}
-
-btnPlay.onclick = function () {
-    SwitchToLevelSelect();
-}
-
 function win() {
     setTimeout(() => SwitchToWinPage(), 1000);
+    console.log ("we are here");
+    let currentLevelResult = localStorage.getItem(currentLevel);
+    console.log (currentLevelResult);
+    if (currentLevelResult>0 && currentLevelResult>steps || !currentLevelResult){
+        localStorage.setItem(String(currentLevel), steps);
+    }    
     let resultSpan = document.getElementById("resultSpan");
-    resultSpan.innerHTML = steps;
+
+    resultSpan.innerHTML = steps+" " + getNumWord(steps,'ШАГ','ШАГА','ШАГОВ');
     let levelSpan = document.getElementById("levelSpan");
     levelSpan.innerHTML = currentLevel + 1;
     sessionStorage.setItem('currentLevel', currentLevel+1 );
@@ -114,7 +113,4 @@ function nextLevel() {
     SwitchToGame();
     history.length = 0;
 }
-
-
-
 

@@ -1,6 +1,8 @@
 "use strict";
 var canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
+var btnRefreshGame = document.getElementById("btnRefreshGame");
+
 
 window.addEventListener("resize", resizeCanvas);
 window.addEventListener('keydown', buttonDown);
@@ -17,6 +19,8 @@ var imgWall = new Image();
 imgWall.src = "/pic/wall.jpg";
 var imgBox = new Image();
 imgBox.src = "/pic/box.jpg"
+var imgBoxDone = new Image();
+imgBoxDone.src = "/pic/boxDone.jpg"
 var imgMan = new Image();
 imgMan.src = "/pic/man.jpg";
 var imgTarget = new Image();
@@ -78,7 +82,6 @@ function touchOrClick(e) {
     const manX = sizeLab.dX + currentXY.col * sizeLab.size;
     const manY = sizeLab.dY + currentXY.row * sizeLab.size;
    
-
     if (xClick > manX && xClick < manX + sizeLab.size && yClick < manY && yClick > manY-sizeLab.size) {
         check(currentXY.row - 1, currentXY.col, currentXY.row - 2, currentXY.col);
     }
@@ -117,7 +120,7 @@ function check(x1, y1, x2, y2) {
 
 
 function drawMap() {
-
+    
     ctx.beginPath();
     ctx.fillStyle = "white";
     ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
@@ -135,12 +138,18 @@ function drawMap() {
 
             }
 
+            if (map[y][x] & 2) {
+                box++;
+                ctx.drawImage(imgBox, sizeLab.dX + x * sizeLab.size, sizeLab.dY + y * sizeLab.size, sizeLab.size, sizeLab.size);
+
+            }
+
             if (map[y][x] & 4) {
                 if (map[y][x] & 2) {
                     boxFixed++;
-                };
-                ctx.drawImage(imgTarget, sizeLab.dX + x * sizeLab.size, sizeLab.dY + y * sizeLab.size, sizeLab.size, sizeLab.size);
-
+                    ctx.drawImage(imgBoxDone, sizeLab.dX + x * sizeLab.size, sizeLab.dY + y * sizeLab.size, sizeLab.size, sizeLab.size);
+                } else {ctx.drawImage(imgTarget, sizeLab.dX + x * sizeLab.size, sizeLab.dY + y * sizeLab.size, sizeLab.size, sizeLab.size);
+                }
             }
 
 
@@ -151,15 +160,13 @@ function drawMap() {
 
             }
 
-            if (map[y][x] & 2) {
-                box++;
-                ctx.drawImage(imgBox, sizeLab.dX + x * sizeLab.size, sizeLab.dY + y * sizeLab.size, sizeLab.size, sizeLab.size);
-
-            }
+            
 
         }
     }
     document.getElementById("spanBox").innerHTML = boxFixed + "/" + box;
+    
+    checkRefreshBtn();
 
     if (boxFixed === box) {
         win();
@@ -171,7 +178,8 @@ function onloadImages(callback) {
         "/pic/box.jpg",
         "/pic/wall.jpg",
         "/pic/target.jpg",
-        "/pic/man.jpg"
+        "/pic/man.jpg",
+        "/pic/boxDone.jpg"
     ];
     let imagesLoaded = 0;
 
@@ -212,3 +220,10 @@ function refreshGame() {
     startGame();
 }
 
+function checkRefreshBtn(){
+    if (history.length){
+        btnRefreshGame.removeAttribute('disabled', '');
+    } else {
+        btnRefreshGame.setAttribute('disabled', 'none');
+    }
+}

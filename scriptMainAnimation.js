@@ -13,7 +13,7 @@ let manH = {
     }
 }
 
-function start() {
+function startAnimation() {
     requestAnimationFrame(tick);
 }
 
@@ -37,7 +37,7 @@ function tick() {
         document.getElementById('man').style.backgroundImage = "url('/pic/manspriteright.jpg')";
     }
 
-    if (manH.posX > 120) {
+    if (manH.posX > 100) {
         manH.speedX = - manH.speedX;
         manH.posY += 10;
         document.getElementById('man').style.backgroundImage = "url('/pic/manspriteleft.jpg')";

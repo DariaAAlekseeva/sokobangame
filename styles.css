@@ -3,12 +3,8 @@
     padding: 0;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: 400;
-}
-
-body {
     overflow: hidden;
 }
-
 
 #game {
     width: 100vw;
@@ -19,9 +15,9 @@ body {
 
 .header {
     width: 100%;
-    height: 8hv;
+    height: 10hv;
     background-color: #5784ac;
-    font-size: 3vmin;
+    font-size: 4vmin;
     display: flex;
 }
 
@@ -30,11 +26,10 @@ canvas {
 }
 
 #canvas {
-    width: 100vw;
+    width: 99vw;
     height: 95vh;
     box-sizing: border-box;
 }
-
 
 .table {
     width: 100%;
@@ -42,39 +37,32 @@ canvas {
 
 
 h1 {
-    font-size: 10vmin;
-    width: 80vw;
+    font-size: 7vh;
+    width: 100vw;
     text-align: center;
-    margin: 10vh;
-    color: #5784ac;
-
+    margin: 2vh 0;
+    color: #d45120;
+    letter-spacing: 3vmin;
 }
 
 h3 {
     text-align: center;
     color: #5784ac;
-    font-size: 4vmin;
+    font-size: 5vmin;
 }
-
 
 #main {
+    position: relative;
+    height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-
-}
-
-#win {
-    display: flex;
+    justify-content:flex-start;
     align-items: center;
     flex-direction: column;
 }
 
-
-#main button {
+#main button, #rules button, #levelSelect button, #btnNextLevel, #win button{
     display: block;
-    font-size: 4vh;
+    font-size: 4vmin;
     width: 50vw;
     height: 6vh;
     margin-top: 2vh;
@@ -84,12 +72,12 @@ h3 {
     color: white;
 }
 
-#btnPlay {
-    top: 35vh;
+.btnPlay {
+    top: 30vh;
 }
 
 #btnRules {
-    top: 43vh;
+    top: 35vh;
 }
 
 #man {
@@ -98,10 +86,11 @@ h3 {
     background-position: left;
     background-size: cover;
     position: absolute;
-    top: 65vh;
+    top: 120vh;
     width: 20vh;
     height: 10vh;
 }
+
 
 #rules {
     width: 80vw;
@@ -109,44 +98,30 @@ h3 {
     background-color: white;
     border: 5px solid #5784ac;
     padding: 3%;
-    margin-top: 20vh;
-    line-height: 4vh;
-    font-size: 3vmin;
+    line-height: 5vmin;
+    margin: 10vmin auto;
+    font-size: 4vmin;
+    text-indent: 30px;
+    text-align: center;
+}
+
+#rules button, #levelSelect button{
+    margin: 2vh auto;
+}
+
+#rules p{
+    text-align: left;
 }
 
 #rules img {
     width: 3vmin;
+    vertical-align:middle;
 }
 
-#usernameInput {
-    margin: 1vh 0;
-    width: 40vw;
-    height: 6vmin;
-    font-size: 5vmin;
-    background-color: white;
-    color: #5784ac;
-    border-radius: 3px;
-    border: #5784ac solid 3px;
-}
-
-
-#btnNextLevel {
-    display: block;
-    font-size: 4vmin;
-    width: 50vmin;
-    height: 6vh;
-    border-style: none;
-    border-radius: 3px;
-    background-color: #5784ac;
-    color: white;
-    margin-top: 10vh;
-}
-
-#btnToMainPage,
 #btnRefreshGame {
     height: 100%;
     width: 100%;
-    font-size: 3vmin;
+    font-size:4vmin;
     background-color: #5784ac;
     color:white;
     border: none;
@@ -155,34 +130,83 @@ h3 {
 
 #btnRefreshGame:disabled{
     color: #8da2b4;
-    
+}
+
+.btnToMainPage {
+    height: 100%;
+    width: 100%;
+    font-size: 4vmin;
+    background-color: #5784ac;
+    color:white;
+    border: none;
+}
+
+#levelSelect{
+    display: flex;
+    text-align: center;
+ 
 }
 
 #levelList {
     display: flex;
-    justify-content: center;
+    text-align: center;
+    justify-content: space-evenly;
     flex-wrap: wrap;
 }
 
-#levelList button {
-    width: 8vmax;
-    height: 8vmax;
+.btnLevel {
+    line-height: 5vmin;
+    width: 15vmin;
+    height: 15vmin;
     margin: 3vh;
-    font-size: 6vmax;
     border: #5784ac 3px solid;
     background-color: white;
+    color: #d45120;
+}
+
+.currentUserLevelRes, .levelNum{
+   
+    line-height: 4vmax;
+    width: 15vmin;
+    height: 7vmin;
+    font-size: 2vmin;
     color: black;
+    pointer-events: none;
+}
+
+.btnLevel:hover div{
+    color: white;
+}
+
+.levelNum{
+    margin-top: 3vmin;
+    color: #d45120;
+    font-size: 5vmin;
+}
+
+.currentUserLevelRes{
+    margin-top: -2vmin;
+}
+
+.btnLevel:hover{
+    
+    border: #5784ac 3px solid;
+    background-color: #5784ac;
+    transform: scale(1.1);
+    transition-duration: 0.5s;
 }
 
 
-#levelList button:hover {
-    width: 8vmax;
-    height: 8vmax;
-    margin: 3vh;
-    font-size: 6vmax;
-    border: #5784ac 3px solid;
-    background-color: #5784ac;
-    color: white;
-    transform: scale(1.2);
-    transition-duration: 0.5s;
+#win {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#levelSelect h1{
+    margin-top: 10vh;
+}
+
+#main h1, #win h1{
+    margin-top: 30vh;
 }
