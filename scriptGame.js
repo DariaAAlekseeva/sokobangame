@@ -173,8 +173,6 @@ function drawMap() {
 
             }
 
-            
-
         }
     }
     document.getElementById("spanBox").innerHTML = boxFixed + "/" + box;
@@ -220,7 +218,7 @@ function onloadImages(callback) {
 function startGame() {
     steps = 0;
     document.getElementById("spanSteps").innerHTML = steps;
-    let lab = localStorage.getItem('currentLevel');
+    let lab = sessionStorage.getItem('currentLevel');
 
     document.getElementById("spanLevel").innerHTML = lab * 1 + 1;
     map = JSON.parse(JSON.stringify(totalMap[lab]));

@@ -100,10 +100,10 @@ switchToStateFromURLHash();
 function win() {
     setTimeout(() => switchToWinPage(), 2000);
     document.getElementById('newRecordMsg').style.visibility = "hidden";
-    let currentLevelResult = localStorage.getItem(String(currentLevel));
+    let currentLevelResult = localStorage.getItem(currentLevel);
     
     if (currentLevelResult > 0 && currentLevelResult > steps || !currentLevelResult) {
-        localStorage.setItem(String(currentLevel), steps);
+        localStorage.setItem(currentLevel, steps);
     }
 
     let resultSpan = document.getElementById("resultSpan");
@@ -116,7 +116,7 @@ function win() {
 
 function nextLevel() {
     currentLevel++;
-    localStorage.setItem('currentLevel', currentLevel);
+    sessionStorage.setItem('currentLevel', currentLevel);
     switchToGame();
     history.length = 0;
 }
@@ -141,7 +141,7 @@ function lockGetReady(callresult) {
     else {
         //const record = {levelsRecord: [null, null, null, null, null, null, null, null, null, null]}
         const record = JSON.parse(callresult.result);
-        let currentLevel = localStorage.getItem('currentLevel');
+        let currentLevel = sessionStorage.getItem('currentLevel');
         record.levelsRecord[currentLevel] = steps;
 
 
@@ -178,7 +178,7 @@ function readReady(callresult) {
         alert(callresult.error);
     else if (callresult.result != "") {
         const currentRecord = JSON.parse(callresult.result);
-        let currentLevel = localStorage.getItem('currentLevel');
+        let currentLevel = sessionStorage.getItem('currentLevel');
         const levelRecordSpan = document.getElementById("levelRecordSpan");
         levelRecordSpan.innerHTML = "ТЕКУЩИЙ РЕКОРД УРОВНЯ - " + currentRecord.levelsRecord[currentLevel];
 
