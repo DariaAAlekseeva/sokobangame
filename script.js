@@ -54,7 +54,7 @@ function switchToStateFromURLHash() {
 
     var URLHash = window.location.hash;
     var stateStr = URLHash.substring(1);
-
+    
     if (stateStr != "") {
         var partsA = stateStr.split("_")
 

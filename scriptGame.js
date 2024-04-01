@@ -8,7 +8,7 @@ window.addEventListener("resize", resizeCanvas);
 window.addEventListener('keydown', buttonDown);
 canvas.addEventListener('click', touchOrClick);
 canvas.addEventListener('touchstart', touchOrClick);
-canvas.addEventListener('dblclick', dblButtonClick)
+canvas.addEventListener('dblclick', dblClick)
 
 
 
@@ -100,7 +100,7 @@ function touchOrClick(e) {
 
 }
 
-function dblButtonClick() {
+function dblClick() {
     if (history.length > 0) {
         map = JSON.parse(history.pop());
         steps++;
