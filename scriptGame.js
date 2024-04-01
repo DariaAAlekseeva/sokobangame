@@ -220,7 +220,7 @@ function onloadImages(callback) {
 function startGame() {
     steps = 0;
     document.getElementById("spanSteps").innerHTML = steps;
-    let lab = sessionStorage.getItem('currentLevel');
+    let lab = localStorage.getItem('currentLevel');
 
     document.getElementById("spanLevel").innerHTML = lab * 1 + 1;
     map = JSON.parse(JSON.stringify(totalMap[lab]));
